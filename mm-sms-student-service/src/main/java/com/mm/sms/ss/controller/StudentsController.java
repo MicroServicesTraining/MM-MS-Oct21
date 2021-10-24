@@ -3,14 +3,15 @@
  */
 package com.mm.sms.ss.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.mm.sms.ss.service.StudentsService;
 
 /**
  * @author USER
@@ -20,54 +21,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/students")
 public class StudentsController {
 	
-	private List<String> studentsList;
-	
-	public StudentsController() {
-		studentsList = new ArrayList<String>();
-	}
-
+	@Autowired
+	public StudentsService studentsService;
+		
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public List<String> getAllStudentsList(){
-		//studentsList = Arrays.asList("Ravi", "Kiran", "Ramya", "Kavya");
-		return studentsList;
+		return studentsService.getAllStudentsList();
 	}
 	
 	@RequestMapping(path = "/{studentName}", method = RequestMethod.POST)
-	public String createStudent(@PathVariable String studentName) {
-		//studentsList = Arrays.asList("Ravi", "Kiran", "Ramya", "Kavya");
-		studentsList.add(studentName);
-		return studentName;
+	public String createStudent(@PathVariable String studentName) throws Exception {
+		return studentsService.createStudent(studentName);
 	}
 
-	
 	@RequestMapping(path = "/{studentNameOld}/{studentNameNew}", method = RequestMethod.PUT)
 	public String modifyStudent(@PathVariable String studentNameOld, @PathVariable String studentNameNew) {
-		Iterator<String> it = studentsList.iterator();
-		boolean studentNameOldFound = false;
-		while(it.hasNext()) {
-			String name = it.next();
-			if(name.equals(studentNameOld)) {
-				it.remove();
-				studentNameOldFound = true;
-			}
-		}
-		if(studentNameOldFound) {
-			studentsList.add(studentNameNew);
-		}
-		return studentNameNew;
+		return studentsService.modifyStudent(studentNameOld, studentNameNew);
 	}
 	
 	@RequestMapping(path = "/{studentName}", method = RequestMethod.DELETE)
 	public Boolean deleteStudent(@PathVariable String studentName) {
-		Iterator<String> it = studentsList.iterator();
-		boolean studentNameOldFound = false;
-		while(it.hasNext()) {
-			String name = it.next();
-			if(name.equals(studentName)) {
-				it.remove();
-				studentNameOldFound = true;
-			}
-		}
-		return studentNameOldFound;
+		return studentsService.deleteStudent(studentName);
 	}
 }
