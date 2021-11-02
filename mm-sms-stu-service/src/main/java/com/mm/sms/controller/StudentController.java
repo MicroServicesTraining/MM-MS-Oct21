@@ -54,4 +54,20 @@ public class StudentController {
 		return studentService.removeStudent(rollno);
 	}
 	
+	@GetMapping("/byrollno/{rollno}")
+	public Student findByRollno(@PathVariable Long rollno) {
+		return studentService.findByRollno(rollno);
+	}
+	
+	@GetMapping("/byname/{name}")
+	public List<Student> findByName(@PathVariable String name){
+		return studentService.findByName(name);
+	}
+
+	@GetMapping("/byfee/{fee}")
+	public List<Student> findByFee(@PathVariable Double fee){
+		return studentService.findByFee(fee);
+	}
+	
+	
 }

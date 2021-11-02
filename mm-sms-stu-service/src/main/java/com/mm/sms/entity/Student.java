@@ -3,8 +3,13 @@
  */
 package com.mm.sms.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,11 +22,16 @@ import javax.persistence.Table;
 public class Student {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long rollno;
 	private String name;
-	private String course;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "course_id", referencedColumnName = "course_id")
+	private Course course;
+	
 	private Double fee;
-	private Integer marks;
+
 
 	/**
 	 * @return the rollno
@@ -47,18 +57,7 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
-	/**
-	 * @return the course
-	 */
-	public String getCourse() {
-		return course;
-	}
-	/**
-	 * @param course the course to set
-	 */
-	public void setCourse(String course) {
-		this.course = course;
-	}
+
 	/**
 	 * @return the fee
 	 */
@@ -72,15 +71,16 @@ public class Student {
 		this.fee = fee;
 	}
 	/**
-	 * @return the marks
+	 * @return the course
 	 */
-	public Integer getMarks() {
-		return marks;
+	public Course getCourse() {
+		return course;
 	}
 	/**
-	 * @param marks the marks to set
+	 * @param course the course to set
 	 */
-	public void setMarks(Integer marks) {
-		this.marks = marks;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
+	
 }

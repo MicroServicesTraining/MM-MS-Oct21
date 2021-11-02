@@ -45,7 +45,7 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public Student modifyStudent(Student student, Long rollno) {
-		Optional<Student> result= studentRepository.findById(rollno);
+		Optional<Student> result= studentRepository.findById(rollno); // select * from students where rollno = ?
 		if(result.isPresent()) {
 			//Student dbStudent = result.get();
 			//dbStudent = student;
@@ -69,6 +69,21 @@ public class StudentDaoImpl implements StudentDao {
 			studentRepository.delete(st);
 		}
 		return deletingStudent;
+	}
+
+	@Override
+	public Student findByRollno(Long rollno) {
+		return studentRepository.findByRollno(rollno);
+	}
+
+	@Override
+	public List<Student> findByName(String name) {
+		return studentRepository.findByName(name);
+	}
+
+	@Override
+	public List<Student> findByFee(Double fee) {
+		return studentRepository.findByFee(fee); // findByXXX()
 	}
 	
 }

@@ -47,5 +47,20 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.removeStudent(rollno);
 	}
 
+	@Override
+	public Student findByRollno(Long rollno) {
+		return studentDao.findByRollno(rollno);
+	}
+
+	@Override
+	public List<Student> findByName(String name) {
+		return studentDao.findByName(name);
+	}
+
+	@Override
+	public List<Student> findByFee(Double fee) {
+		return studentDao.findByFee(fee);
+	}
+
 
 }
