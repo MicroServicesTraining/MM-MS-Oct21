@@ -19,10 +19,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "products")
 @NamedQueries({
-		@NamedQuery(query = "select p from Product p where p.price > :minPrice and p.price < :maxPrice", name = "getProductsByPriceRange") })
+	@NamedQuery(query = "select p from Product p where p.price > :minPrice and p.price < :maxPrice", name = "Product.getProductsByRange")
+})
 
 @NamedNativeQueries(value = {
-	@NamedNativeQuery(name = "Product.getProductsByString", query = " select * from products  where name like :searchToken",resultClass = Product.class)
+	@NamedNativeQuery(name = "Product.getProductsByString", query = "select * from products  where name like :searchToken", resultClass = Product.class)
 })
 public class Product {
 
