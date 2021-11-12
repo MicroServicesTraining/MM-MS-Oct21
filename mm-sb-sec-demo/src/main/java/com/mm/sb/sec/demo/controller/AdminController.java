@@ -19,5 +19,22 @@ public class AdminController {
 	public String getAdminHome() {
 		return "<h1> Welcome Admin </h1>";
 	}
+	
+	@GetMapping("/admin/finduser")
+	public String findUser() {
+		return "<h1> Find User </h1>";
+	}
+	
+	@GetMapping("/admin/newuser")
+	public String createUser() {
+		return "<h1> Create User </h1>";
+	}
+	
+	@GetMapping("/admin/modifyuser")
+	public String modifyUser() {
+		return "<h1> Modify User </h1>";
+	}
+	
+	
 
 }

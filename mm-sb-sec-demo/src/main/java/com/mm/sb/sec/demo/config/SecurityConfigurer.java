@@ -32,7 +32,14 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/users/customer").hasAnyRole("customer", "seller")
 			.antMatchers("/users/seller").hasRole("seller")
-			.antMatchers("/users/admin").hasRole("admin")
+				/*
+				 * .antMatchers("/users/admin").hasRole("admin")
+				 * .antMatchers("/users/admin/finduser").hasRole("admin")
+				 * .antMatchers("/users/admin/newuser").hasRole("admin")
+				 * .antMatchers("/users/admin/modifyuser").hasRole("admin")
+				 */
+			.antMatchers("/users/admin/**").hasRole("admin")
+			.antMatchers("/users/customer/placeorder").hasRole("customer")
 			.antMatchers("/users").permitAll()
 			.and().formLogin();
 	}

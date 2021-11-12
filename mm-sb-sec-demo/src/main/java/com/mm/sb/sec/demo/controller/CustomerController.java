@@ -19,5 +19,10 @@ public class CustomerController {
 	public String getCustomerHome() {
 		return "<h1> Welcome Customer </h1>";
 	}
+	
+	@GetMapping("/customer/placeorder")
+	public String placeOrder() {
+		return "<h1> Placing New Order </h1>";
+	}
 
 }
