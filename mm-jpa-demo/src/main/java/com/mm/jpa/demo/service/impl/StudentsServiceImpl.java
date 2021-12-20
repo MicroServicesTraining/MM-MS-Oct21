@@ -24,7 +24,10 @@ public class StudentsServiceImpl implements StudentsService {
 
 	@Override
 	public List<Student> getAllStudents() {
-		return studentsDao.getAllStudents();
+		//
+		List<Student> studentsList = studentsDao.getAllStudents();
+		//
+		return studentsList;
 	}
 
 }
