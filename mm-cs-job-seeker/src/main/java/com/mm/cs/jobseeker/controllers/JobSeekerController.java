@@ -46,8 +46,8 @@ public class JobSeekerController {
 	public List<JobPosting> findAllJobPostings(){
 		LOGGER.log(Level.INFO, "findAllJobPosting");
 		RestTemplate restTemplate = new RestTemplate();
-		List<JobPosting> response = restTemplate.getForObject("http://localhost:8082/mmcsjp/jobpostings", List.class);
-		//List<JobPosting> response = restTemplate.getForObject("http://localhost:8090/jobpostings", List.class);
+		//List<JobPosting> response = restTemplate.getForObject("http://localhost:8082/mmcsjp/jobpostings", List.class);
+		List<JobPosting> response = restTemplate.getForObject("http://localhost:8090/jp/jobpostings/", List.class);
 		return response;
 	}
 	
